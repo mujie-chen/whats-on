@@ -1,0 +1,53 @@
+{
+  "_comment": "Single source of truth. NO APPROXIMATIONS: an event is emitted only if it is a deterministic rule OR has an explicit confirmed instance. 'pending' = tracked but not emitted until a real date is filled in. 'feed' = subscribe separately, never generated here. weekday: Mon=0 .. Sun=6.",
+
+  "rule_events": [
+    {"name": "Nobel Prize Ceremony",        "category": "Science", "rule": "fixed",        "month": 12, "day": 10, "duration": 1, "note": "Always 10 Dec (Nobel's death). Stockholm + Oslo."},
+    {"name": "Nobel Prize Announcements",    "category": "Science", "rule": "first_weekday","month": 10, "weekday": 0, "duration": 8, "note": "First Monday of Oct, runs ~1 week."},
+    {"name": "Met Gala",                     "category": "Fashion", "rule": "nth_weekday",  "month": 5,  "weekday": 0, "n": 1, "duration": 1, "note": "First Monday of May."},
+    {"name": "Kentucky Derby",               "category": "Sports",  "rule": "nth_weekday",  "month": 5,  "weekday": 5, "n": 1, "duration": 1, "note": "First Saturday of May."},
+    {"name": "Boston Marathon",              "category": "Sports",  "rule": "nth_weekday",  "month": 4,  "weekday": 0, "n": 3, "duration": 1, "note": "Patriots' Day, 3rd Monday of April."},
+    {"name": "New York City Marathon",       "category": "Sports",  "rule": "nth_weekday",  "month": 11, "weekday": 6, "n": 1, "duration": 1, "note": "First Sunday of November."}
+  ],
+
+  "confirmed_events": [
+    {"name": "Oscars (Academy Awards)", "category": "Film", "note": "99th/100th officially announced; 101st TBA.",
+     "instances": [{"start": "2027-03-14", "days": 1}, {"start": "2028-03-05", "days": 1}]},
+    {"name": "CES", "category": "Tech", "note": "CES 2027 officially confirmed.",
+     "instances": [{"start": "2027-01-06", "days": 4}]}
+  ],
+
+  "pending_events": [
+    {"name": "COP Climate Summit",        "category": "Climate",   "note": "COP31 Antalya, Turkey, Nov 2026 - exact dates TBA."},
+    {"name": "FIFA World Cup 2026",       "category": "Sports",    "note": "USA/Can/Mex ~Jun-Jul 2026 - confirm exact in research pass."},
+    {"name": "Golden Globes",             "category": "Film/TV",   "note": "awaiting confirmed date"},
+    {"name": "Grammy Awards",             "category": "Music",     "note": "awaiting confirmed date"},
+    {"name": "BAFTA Film Awards",         "category": "Film",      "note": "awaiting confirmed date"},
+    {"name": "Cannes Film Festival",      "category": "Film",      "note": "awaiting confirmed date"},
+    {"name": "Venice Film Festival",      "category": "Film",      "note": "awaiting confirmed date"},
+    {"name": "Emmy Awards",               "category": "TV",        "note": "awaiting confirmed date"},
+    {"name": "Coachella",                 "category": "Music",     "note": "awaiting confirmed date"},
+    {"name": "Glastonbury Festival",      "category": "Music",     "note": "awaiting confirmed date"},
+    {"name": "MWC Barcelona",             "category": "Tech",      "note": "awaiting confirmed date"},
+    {"name": "Google I/O",                "category": "Tech",      "note": "awaiting confirmed date"},
+    {"name": "Apple WWDC",                "category": "Tech",      "note": "awaiting confirmed date"},
+    {"name": "Apple September Event",     "category": "Tech",      "note": "awaiting confirmed date"},
+    {"name": "Gamescom",                  "category": "Games",     "note": "awaiting confirmed date"},
+    {"name": "The Game Awards",           "category": "Games",     "note": "awaiting confirmed date"},
+    {"name": "Pulitzer Prizes",           "category": "Literature","note": "awaiting confirmed date"},
+    {"name": "Booker Prize",              "category": "Literature","note": "awaiting confirmed date"},
+    {"name": "Michelin Guide Singapore",  "category": "Food",      "note": "your city - confirm date"},
+    {"name": "Wimbledon",                 "category": "Sports",    "note": "awaiting confirmed date"},
+    {"name": "The Masters (golf)",        "category": "Sports",    "note": "awaiting confirmed date"},
+    {"name": "Tour de France",            "category": "Sports",    "note": "awaiting confirmed date"},
+    {"name": "Ironman World Championship","category": "Sports",    "note": "your sport - confirm date"},
+    {"name": "Art Basel (Switzerland)",   "category": "Art",       "note": "awaiting confirmed date"},
+    {"name": "Salone del Mobile (Milan)", "category": "Design",    "note": "awaiting confirmed date"},
+    {"name": "Oktoberfest",               "category": "Food/Drink","note": "awaiting confirmed date"}
+  ],
+
+  "feed_events": [
+    {"name": "Formula 1",       "category": "Sports", "subscribe": "webcal from calendar.formula1.com (official) or f1calendar.com (customisable)", "note": "subscribe directly - auto-updates every session"},
+    {"name": "Rocket launches", "category": "Space",  "subscribe": "nextspaceflight.com ICS, or space.floern.com/launch.ics?vehicle=falcon* for SpaceX-only", "note": "subscribe directly - auto-updates"}
+  ]
+}

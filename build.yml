@@ -1,0 +1,33 @@
+name: Build calendar
+
+on:
+  schedule:
+    # Weekly, Monday 03:17 UTC. Well inside the 60-day disable window.
+    - cron: "17 3 * * 1"
+  workflow_dispatch: {}   # lets you trigger by hand from the Actions tab
+
+permissions:
+  contents: write          # needed to push the rebuilt .ics
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate calendar
+        run: python generate.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "calendar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add whats-on.ics
+          # X-GENERATED changes every run, so there is always something to
+          # commit -> repo stays "active" -> scheduled workflow never auto-disables.
+          git commit -m "rebuild $(date -u +%FT%TZ)" || echo "nothing to commit"
+          git push
